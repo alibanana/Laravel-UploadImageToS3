@@ -27,7 +27,7 @@
               <h2>Create New Folder</h2>
             </div>
             <div>
-              <form id="myForm" enctype="multipart/form-data" method="POST" action="{{ route('store') }}">
+              <form id="myForm" enctype="multipart/form-data" method="POST" action="{{ route('folder.store') }}">
                 @csrf
                 <div class="form-group">
                   <h5>Folder's Name</h5>
@@ -68,12 +68,6 @@
                 </span>
                 @enderror
 
-                <div class="progress">
-                  <div class="progress-bar" aria-valuenow="" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-                  0%
-                  </div>
-                </div>
-                <br />
                 <div id="success" class="row">
                 </div>
 
@@ -91,31 +85,29 @@
 
 @section('scripts')
 <script type="text/javascript">
-  // START OF PROGRESS BAR
+  // START OF PROGRESS UPDATES
   $(document).ready(function(){
     $('form').ajaxForm({
       beforeSend:function(){
-        $('#success').empty();
-        $('.progress-bar').text('0%');
-        $('.progress-bar').css('width', '0%');
+        // $('#success').empty();
+        $('#success').html('<div class="text-secondary text-center"><b>Images are not uploaded yet.</b></div><br/><br/>');
       },
-      uploadProgress:function(event, position, total, percentComplete){
-        $('.progress-bar').text(percentComplete + '0%');
-        $('.progress-bar').css('width', percentComplete + '0%');
+      uploadProgress:function(){
+        $('#success').html('<div class="text-info text-center"><b>Uploading Images...</b></div><br/><br/>');
       },
       success:function(data)
       {
         if(data.success)
         {
-          $('#success').html('<div class="text-success text-center"><b>'+data.success+'</b></div><br /><br />');
-          $('#success').append(data.image);
-          $('.progress-bar').text('Uploaded');
-          $('.progress-bar').css('width', '100%');
+          $('#success').html('<div class="text-success text-center"><b>'+data.success+'!</b></div><br/><br/>');
+          alert('File Has Been Uploaded Successfully');
+          var site_url = {!! json_encode(env('APP_URL')) !!};
+          window.location.href = site_url +"folders";
         }
       }
     });
   });
-  // END OF PROGRESS BAR
+  // END OF PROGRESS UPDATES
 </script>
 
 <script>

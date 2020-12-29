@@ -17,9 +17,11 @@ Route::get('/', function () { return view('welcome'); });
 
 Auth::routes(['verify' => true]);
 
-Route::get('/folders', 'HomeController@index')->name('folders');
+Route::get('/folders', 'HomeController@index')->name('folder.index');
 Route::redirect('/home', '/folders');
-Route::get('/create', 'HomeController@create')->name('create');
-Route::post('/store', 'HomeController@store')->name('store');
-Route::get('/folder/{id}', 'HomeController@show')->name('show');
-Route::get('/edit', 'HomeController@edit')->name('edit');
+Route::get('/folder/create', 'HomeController@create')->name('folder.create');
+Route::post('/folder/store', 'HomeController@store')->name('folder.store');
+Route::get('/folder/{id}', 'HomeController@show')->name('folder.show');
+Route::get('/folder/{id}/edit', 'HomeController@edit')->name('folder.edit');
+Route::put('/folder/{id}', 'HomeController@update')->name('folder.update');
+Route::delete('/folder/{id}', 'HomeController@destroy')->name('folder.destroy');
