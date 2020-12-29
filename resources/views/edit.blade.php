@@ -69,8 +69,8 @@
                 </span>
                 @enderror
 
-                {{-- <div id="success" class="row">
-                </div> --}}
+                <div id="success" class="row">
+                </div>
 
                 <!-- START OF IMAGES PREVIEW -->
                 <div class="row m-0 pb-4" id="gallery_preview">
@@ -95,7 +95,7 @@
 @endsection
 
 @section('scripts')
-{{-- <script type="text/javascript">
+<script type="text/javascript">
   // START OF PROGRESS UPDATES
   $(document).ready(function(){
     $('form').ajaxForm({
@@ -119,7 +119,7 @@
     });
   });
   // END OF PROGRESS UPDATES
-</script> --}}
+</script>
 
 <script>
 // Delete Image Preview Script

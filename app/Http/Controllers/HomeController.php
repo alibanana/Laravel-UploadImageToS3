@@ -139,7 +139,6 @@ class HomeController extends Controller
 
         $folder->name = $input['name'];
         $folder->description = $input['description'];
-        $folder->save();
 
         // User has uploaded new images.
         if ($request->has('imagenames')){
@@ -167,8 +166,10 @@ class HomeController extends Controller
             }
         }
 
-        // return response()->json(['success'=>'Images Has Been Uploaded Successfully']);
-        return redirect('folders');
+        $folder->save();
+
+        return response()->json(['success'=>'Images Has Been Uploaded Successfully']);
+        // return redirect('folders');
     }
 
     // Delete a specific folder
