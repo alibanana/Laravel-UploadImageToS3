@@ -32,7 +32,7 @@ class HomeController extends Controller
     {
         $folders = Folder::orderBy('created_at', 'DESC')->withCount('images')->paginate(20);
 
-        return view('home', compact('folders', 'countFolders'));
+        return view('home', compact('folders'));
     }
 
     // Show form to store folders.
@@ -71,7 +71,8 @@ class HomeController extends Controller
             }
         }
 
-        return response()->json(['success'=>'Images Has Been Uploaded Successfully']);
+        // return response()->json(['success'=>'Images Has Been Uploaded Successfully']);
+        return redirect('folders');
     }
 
     // Function to store images
@@ -168,8 +169,8 @@ class HomeController extends Controller
 
         $folder->save();
 
-        return response()->json(['success'=>'Images Has Been Uploaded Successfully']);
-        // return redirect('folders');
+        // return response()->json(['success'=>'Images Has Been Uploaded Successfully']);
+        return redirect('folders');
     }
 
     // Delete a specific folder
