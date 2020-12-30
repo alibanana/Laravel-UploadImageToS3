@@ -30,7 +30,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $folders = Folder::orderBy('created_at', 'DESC')->withCount('images')->paginate(20);
+        $folders = Folder::where('user_id', Auth::user()->id)->orderBy('created_at', 'DESC')->withCount('images')->paginate(20);
 
         return view('home', compact('folders'));
     }
@@ -72,7 +72,7 @@ class HomeController extends Controller
         }
 
         // return response()->json(['success'=>'Images Has Been Uploaded Successfully']);
-        return redirect('folders');
+        return redirect('folders')->with('success', 'Images has been uploaded successfully!');
     }
 
     // Function to store images
@@ -93,8 +93,12 @@ class HomeController extends Controller
     public function show($id)
     {
         $folder = Folder::findorfail($id);
-        
-        return view('view', compact('folder'));
+
+        if ($this->is_authorized($folder->user_id)) {
+            return view('view', compact('folder'));
+        }
+
+        return redirect('folders')->with('error', 'Oops, seems like you are not authorized to view that page.');
     }
 
     // Show form to update folder details.
@@ -102,12 +106,16 @@ class HomeController extends Controller
     {
         $folder = Folder::findorfail($id);
 
-        return view('edit', compact('folder'));
+        if ($this->is_authorized($folder->user_id)) {
+            return view('edit', compact('folder'));
+        }
+
+        return redirect('folders')->with('error', 'Oops, seems like you are not authorized to view that page.');        
     }
 
     // Update the Folder
     public function update(Request $request, $id)
-    {
+    {        
         $input = $request->all();
 
         $validator = Validator::make($input, [
@@ -119,6 +127,10 @@ class HomeController extends Controller
         $validator->validate();
 
         $folder = Folder::findorfail($id);
+
+        if (!$this->is_authorized($folder->user_id)) {
+            return redirect('folders')->with('error', 'Oops, seems like you are not authorized to view that page.');
+        }
 
         // If the folder's name is changed, move files to new folders.
         if ($input['name'] != $folder->name) {
@@ -170,7 +182,7 @@ class HomeController extends Controller
         $folder->save();
 
         // return response()->json(['success'=>'Images Has Been Uploaded Successfully']);
-        return redirect('folders');
+        return redirect('folders')->with('success', 'Folder has been updated successfully!');
     }
 
     // Delete a specific folder
@@ -178,12 +190,26 @@ class HomeController extends Controller
     {
         $folder = Folder::findorfail($folder_id);
 
+        if (!$this->is_authorized($folder->user_id)) {
+            return redirect('folders')->with('error', 'Oops, seems like you are not authorized to view that page.');
+        }
+
         // Delete folder on s3 bucket
         Storage::disk('s3')->deleteDirectory(Auth::user()->email.'/'.$folder->name);
 
         // Delete data on database
         $folder->delete();
 
-        return redirect('folders');
+        return redirect('folders')->with('success', 'Folder was deleted successfully!');
     }
+
+    // Function to determine whether the user is authorized.
+    private function is_authorized($user_id) {
+        if (Auth::user()->id == $user_id) {
+            return true;
+        }
+
+        return false;
+    }
+
 }

@@ -18,6 +18,28 @@
           </div>
       </div> --}}
 
+      {{-- SUCCESS CARD ALERT --}}
+      @if (session('success'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+          <h4><strong>Success!</strong></h4>
+          {{ session('success') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
+
+      {{-- ERROR CARD ALERT --}}
+      @if (session('error'))
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <h4><strong>Error!</strong></h4>
+          {{ session('error') }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      @endif
+
       <div class="pb-4" style="display:flex;justify-content:space-between">
         <h2>Folders List</h2>
         <a type="submit" class="btn btn-secondary btn-lg" href="/folder/create">Create New</a>
