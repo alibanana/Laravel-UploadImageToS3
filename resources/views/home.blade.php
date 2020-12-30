@@ -58,7 +58,7 @@
           @forelse($folders as $folder)
               <tr>
                   <td scope="col">{{ $loop->iteration }}</td>
-                  <td scope="col"><b>{{ $folder->name }}<b></td>
+                  <td scope="col" style="max-width: 300px;"><b>{{ $folder->name }}<b></td>
                   <td scope="col" style="max-width: 550px;">{{ $folder->description }}</td>
                   <td scope="col" class="text-center">{{ $folder->images_count }}</td>
                   <td scope="col">
