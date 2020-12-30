@@ -27,13 +27,11 @@
             <div class="top-nav right">
               <p class="nav-text"></p>
               <ul class="right chevron">
+                <li><a href="{{ url('/') }}">Home</a></li>
+                <li><a href="{{ url('/about-us') }}">About Us</a></li>
                 @auth
-                  <li><a href="{{ url('/') }}">Home</a></li>
                   <li><a href="{{ url('/home') }}">Folders</a></li>
-                  <li><a href="{{ url('/about-us') }}">About Us</a></li>
                 @else
-                  <li><a href="{{ url('/') }}">Home</a></li>
-                  <li><a href="{{ url('/about-us') }}">About Us</a></li>
                   <li><a href="{{ route('login') }}">Login</a></li>
                         @if (Route::has('register')) 
                             <li><a href="{{ route('register') }}">Register</a></li>
@@ -60,7 +58,7 @@
             <div class="line">
               <h2 class="text-s-size-40 text-size-50 text-line-height-1 margin-bottom-10 text-thin text-center"><span class="text-dark">-</span> Our Team <span class="text-dark">-</span></h2> 
               <p class="margin-bottom-50 text-center">
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy<br> nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat.
+              Our group consists of Alifio Rasendriya Rasyid, Naman Vohra, Muchsin Hisyam<br>Jason Sianandar, and Fauzan Athallah Arief.
               </p>  
               <div class="carousel-blocks owl-carousel">                                                                                                            
                 <div class="item">                                                                                                                                                                                                     

@@ -13,8 +13,8 @@
     <!-- CUSTOM STYLE -->      
     <link rel="stylesheet" href="{{ asset('/assets/css/template-style.css') }}">
     <link href="https://fonts.googleapis.com/css?family=Work+Sans:100,400,600,900&subset=latin-ext" rel="stylesheet"> 
-    <script type="text/javascript" src="{{ asset('/assets/js/jquery-1.8.3.min.js') }}') }}"></script>
-    <script type="text/javascript" src="{{ asset('/assets/js/jquery-ui.min.js') }}') }}"></script>      
+    <script type="text/javascript" src="{{ asset('/assets/js/jquery-1.8.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('/assets/js/jquery-ui.min.js') }}"></script>      
   </head>
 
   <body class="size-1140">
@@ -26,13 +26,11 @@
             <div class="top-nav right">
               <p class="nav-text"></p>
               <ul class="right chevron">
+                <li><a href="{{ url('/') }}">Home</a></li>
+                <li><a href="{{ url('/about-us') }}">About Us</a></li>
                 @auth
-                  <li><a href="{{ url('/') }}">Home</a></li>
                   <li><a href="{{ url('/home') }}">Folders</a></li>
-                  <li><a href="{{ url('/about-us') }}">About Us</a></li>
                 @else
-                  <li><a href="{{ url('/home') }}">Home</a></li>
-                  <li><a href="{{ url('/about-us') }}">About Us</a></li>
                   <li><a href="{{ route('login') }}">Login</a></li>
                         @if (Route::has('register')) 
                             <li><a href="{{ route('register') }}">Register</a></li>
@@ -50,9 +48,8 @@
         <article>
           <header class="section background-white">
             <div class="line text-center">        
-              <h1 class="text-dark text-s-size-30 text-m-size-40 text-l-size-headline text-thin text-line-height-1">This is title</h1>
-              <p class="margin-bottom-0 text-size-16 text-dark">Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse molestie consequat, vel illum dolore eu feugiat nulla facilisis.<br>
-              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod.</p>
+              <h1 class="text-dark text-s-size-30 text-m-size-40 text-l-size-headline text-thin text-line-height-1">Laravel - Upload To S3</h1>
+              <p class="margin-bottom-0 text-size-16 text-dark">This is our final project for Cloud & Distributed Systems course. Our aim was to utilized solely AWS services for the whole project; here we have used RDS for the database, S3 to store the files, and Beanstalk to host the website itself.</p>
             </div>  
           </header>
           <div class="background-white full-width"> 
