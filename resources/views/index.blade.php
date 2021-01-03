@@ -48,7 +48,7 @@
         <article>
           <header class="section background-white">
             <div class="line text-center">        
-              <h1 class="text-dark text-s-size-30 text-m-size-40 text-l-size-headline text-thin text-line-height-1">Laravel - Upload Image To S3</h1>
+              <h1 class="text-dark text-s-size-30 text-m-size-40 text-l-size-headline text-thin text-line-height-1">Laravel - Upload To S3</h1>
               <p class="margin-bottom-0 text-size-16 text-dark">This is our final project for Cloud & Distributed Systems course. Our aim was to utilized solely AWS services for the whole project; here we have used RDS for the database, S3 to store the files, and Beanstalk to host the website itself.</p>
             </div>  
           </header>
